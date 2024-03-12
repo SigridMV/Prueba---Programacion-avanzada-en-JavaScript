@@ -1,4 +1,5 @@
 export let animales = (() => {
+  // URL del archivo JSON que contiene los datos de los animales
   const url = '../../animales.json';
 
   const getData = async () => {
@@ -14,6 +15,6 @@ export let animales = (() => {
       return null;
     }
   };
-
+  // Retorna un objeto con el método getData para ser utilizado externamente
   return { getData };
 })();

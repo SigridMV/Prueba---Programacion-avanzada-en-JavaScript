@@ -3,32 +3,32 @@ import Animal from './Animal.js';
 class Leon extends Animal {
   constructor(nombre, edad, comentarios) {
     super(nombre, edad, comentarios);
-    this.imagen = '../imgs/Leon.png';
-    this.sonido = '../sounds/Rugido.mp3';
+    this.imagen = '../../assets/imgs/Leon.png';
+    this.sonido = '../../assets/sounds/Rugido.mp3';
   }
 }
 
 class Lobo extends Animal {
   constructor(nombre, edad, comentarios) {
     super(nombre, edad, comentarios);
-    this.imagen = '../imgs/Lobo.jpg';
-    this.sonido = '../sounds/Aullido.mp3';
+    this.imagen = '../../assets/imgs/Lobo.jpg';
+    this.sonido = '../../assets/sounds/Aullido.mp3';
   }
 }
 
 class Oso extends Animal {
   constructor(nombre, edad, comentarios) {
     super(nombre, edad, comentarios);
-    this.imagen = '../imgs/Oso.jpg';
-    this.sonido = '../sounds/Grunido.mp3';
+    this.imagen = '../../assets/imgs/Oso.jpg';
+    this.sonido = '../../assets/sounds/Grunido.mp3';
   }
 }
 
 class Serpiente extends Animal {
   constructor(nombre, edad, comentarios) {
     super(nombre, edad, comentarios);
-    this.imagen = '../imgs/Serpiente.jpg';
-    this.sonido = '../sounds/Siseo.mp3';
+    this.imagen = '../../assets/imgs/Serpiente.jpg';
+    this.sonido = '../../assets/sounds/Siseo.mp3';
   }
 }
 

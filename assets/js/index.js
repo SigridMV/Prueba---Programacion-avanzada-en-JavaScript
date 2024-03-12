@@ -1,9 +1,13 @@
+// interacción del usuario con la página web.
 import { cargarImagen } from './Imagenes.js';
+import { cargarSonido } from './Sonido.js';
 import { animales } from './Consulta.js';
 import { Leon, Lobo, Oso, Serpiente, Aguila } from './TipoAnimal.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
+  //Elemento select que permite al usuario elegir el tipo de animal.
   const selectAnimales = document.getElementById('animal');
+  // Botón para registrar un nuevo animal
   const btnRegistrar = document.getElementById('btnRegistrar');
 
   // Event listener para el cambio de animal seleccionado
@@ -26,6 +30,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   btnRegistrar.addEventListener('click', agregarAnimal);
 });
 
+//Agrega un nuevo animal a la tabla y muestra su información.
 async function agregarAnimal() {
   const nombre = document.getElementById('animal').value;
   const edad = document.getElementById('edad').value;
@@ -57,12 +62,14 @@ async function agregarAnimal() {
 
   // Obtener la URL de la imagen
   const imagenURL = await cargarImagen(`../../assets/imgs/${animal.imagen}`);
+  // Obtener la URL del sonido
+  const sonidoURL = await cargarSonido(`../../assets/sounds/${animal.sonido}`);
 
   // Agregar animal a la tabla
-  agregarAnimalATabla(imagenURL, animal);
+  agregarAnimalATabla(imagenURL, sonidoURL, animal);
 }
 
-function agregarAnimalATabla(imagenURL, animal) {
+function agregarAnimalATabla(imagenURL, sonidoURL, animal) {
   // Crear fila de la tabla con los datos del animal
   const tablaAnimales = document.getElementById('Animales');
 
@@ -70,10 +77,13 @@ function agregarAnimalATabla(imagenURL, animal) {
   fila.classList.add('animal-row');
 
   fila.innerHTML = `
-    <div class="animal-col">${animal.nombre}</div>
-    <div class="animal-col">${animal.edad}</div>
     <div class="animal-col">
-      <button class="btn btn-info btnDetalle">Detalles</button>
+      <img src="${imagenURL}" alt="Imagen de animal" style="max-width: 100px;">
+    </div>
+    <div class="animal-col">
+      <button class="btn btn-info btnReproducir" data-sonido="${sonidoURL}">
+        <img src="../../assets/imgs/images.png" alt="Reproducir sonido" style="max-width: 20%; border-radius: 10px">
+      </button>
     </div>
   `;
 
@@ -82,11 +92,19 @@ function agregarAnimalATabla(imagenURL, animal) {
   // Limpiar formulario después de agregar el animal
   limpiarFormulario();
 
-  // Agregar event listener al botón de detalles
-  const btnDetalle = fila.querySelector('.btnDetalle');
-  btnDetalle.addEventListener('click', () => {
+  // Agregar event listener al botón de reproducir
+  const btnReproducir = fila.querySelector('.btnReproducir');
+  btnReproducir.addEventListener('click', () => {
+    reproducirSonido(sonidoURL);
     mostrarDetalle(imagenURL, animal.nombre, animal.edad, animal.comentarios);
   });
+}
+
+//Reproduce el sonido del animal.
+function reproducirSonido(sonidoURL) {
+  const player = document.getElementById('player');
+  player.src = sonidoURL;
+  player.play();
 }
 
 function limpiarFormulario() {

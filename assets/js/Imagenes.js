@@ -1,3 +1,4 @@
+//Función asincrónica 
 export async function cargarImagen(ruta) {
   try {
     const response = await fetch(ruta);
